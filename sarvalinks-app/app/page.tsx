@@ -9,10 +9,12 @@ import Opportunity from "../components/Opportunity";
 import Leadership from "../components/Leadership";
 import JoinMission from "../components/JoinMission";
 import Footer from "../components/Footer";
+import Preloader from "../components/Preloader";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground relative selection:bg-gold selection:text-black overflow-x-hidden">
+      <Preloader />
       <Navbar />
       <Hero />
       <Mission />

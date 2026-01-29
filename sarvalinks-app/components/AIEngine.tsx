@@ -1,98 +1,131 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { Brain, Bot, BarChart3, BookOpen, Map } from "lucide-react";
-import GSAPReveal from "./GSAPReveal";
+import { Brain, Bot, BarChart3, BookOpen, Map, ArrowRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AIEngine() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const features = [
     { 
         icon: Brain, 
         title: "AI-Powered Job Matching", 
-        desc: "Algorithms that understand potential beyond resumes.", 
+        desc: "Precision matching by skill, location, growth potential.", 
         img: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2832&auto=format&fit=crop" 
     },
     { 
         icon: Bot, 
         title: "Robotic Interviews", 
-        desc: "Instant, bias-free first rounds conducted by advanced AI avatars.", 
+        desc: "Bias-free, scalable candidate evaluation.", 
         img: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2670&auto=format&fit=crop" 
     },
     { 
         icon: BarChart3, 
         title: "Workforce Analytics", 
-        desc: "Real-time supply & demand heatmaps for policy makers.", 
+        desc: "Real-time demand–supply intelligence for employers & governments.", 
         img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop" 
     },
     { 
         icon: BookOpen, 
-        title: "AI Study Companion", 
-        desc: "Personalized learning paths to bridge skill gaps automatically.", 
+        title: "AI Learning Companion", 
+        desc: "Adaptive upskilling aligned to market demand.", 
         img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2574&auto=format&fit=crop" 
     },
     { 
         icon: Map, 
-        title: "Real-Time Workforce Map", 
-        desc: "Visualizing the pulse of India's talent across 28 states.", 
+        title: "India Workforce Map", 
+        desc: "Live visualization of employment, skills, and gaps.", 
         img: "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2674&auto=format&fit=crop" 
     },
   ];
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    const trigger = triggerRef.current;
+    const container = containerRef.current;
+
+    if (section && trigger && container) {
+        const scrollWidth = container.scrollWidth - window.innerWidth + 100; // Extra buffer
+
+        const pin = gsap.fromTo(
+            container,
+            { x: 0 },
+            {
+                x: -scrollWidth,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: trigger,
+                    start: "top top",
+                    end: `+=${scrollWidth}`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1,
+                },
+            }
+        );
+
+        return () => {
+            pin.kill();
+        };
+    }
+  }, []);
+
   return (
-    <section id="ai-engine" className="py-32 bg-[#050505] relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] [background-size:40px_40px] opacity-20 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-24">
-          <GSAPReveal>
-            <h2 className="text-4xl md:text-6xl font-serif font-bold text-gradient-gold mb-6">
-                Artificial Intelligence. <br/>
-                <span className="text-white">Human Purpose.</span>
+    <section ref={sectionRef} id="ai-engine" className="bg-[#050505] relative overflow-hidden">
+        
+      <div ref={triggerRef} className="h-screen flex flex-col justify-center relative">
+         <div className="container mx-auto px-6 mb-12 shrink-0 relative z-20">
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-gradient-gold mb-4">
+                Artificial Intelligence with <span className="text-white block md:inline">National Purpose.</span>
             </h2>
-          </GSAPReveal>
-          <GSAPReveal delay={0.2}>
-            <p className="text-xl text-gray-400 font-light tracking-wide max-w-2xl mx-auto">
-                We use advanced neural networks not to replace humans, but to elevate them.
+            <p className="text-xl text-gray-400 font-light tracking-wide max-w-3xl">
+                SarvaLinks embeds AI at the infrastructure level. 
+                <span className="text-white font-medium block mt-2">This is not automation. This is workforce intelligence at national scale.</span>
             </p>
-          </GSAPReveal>
-        </div>
+         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+         <div ref={containerRef} className="flex gap-8 px-6 md:px-20 w-max relative z-10 items-center">
              {features.map((feature, idx) => (
-                <GSAPReveal key={idx} delay={idx * 0.1} className={`${idx === 4 ? "md:col-span-2 lg:col-span-1 lg:col-start-2" : ""} h-full`}>
-                    <div className="relative min-h-[24rem] h-auto rounded-2xl overflow-hidden border border-white/10 group hover:border-gold/60 transition-all duration-500 shadow-2xl flex flex-col">
-                        
-                        {/* Image */}
-                        <div className="absolute inset-0">
-                            <Image 
-                                src={feature.img} 
-                                alt={feature.title} 
-                                fill 
-                                className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
-                            />
-                            <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent"></div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="relative z-10 p-8 flex flex-col justify-end flex-grow min-h-[inherit]">
-                            <div className="w-14 h-14 bg-white/5 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/10 group-hover:bg-gold mb-6 transition-colors duration-300">
-                                <feature.icon className="text-gray-300 group-hover:text-black w-7 h-7 transition-colors" />
-                            </div>
-                            
-                            <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-gold-light transition-colors">{feature.title}</h3>
-                            <p className="text-gray-400 group-hover:text-white transition-colors leading-relaxed">
-                                {feature.desc}
-                            </p>
-                        </div>
-
-                        {/* Hover Overlay Line */}
-                        <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-gold to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div 
+                    key={idx} 
+                    className="w-[400px] md:w-[500px] h-[350px] relative group rounded-3xl overflow-hidden border border-white/10 shrink-0 bg-[#0f1012]"
+                >
+                    {/* Image Background */}
+                    <div className="absolute inset-0">
+                        <Image 
+                            src={feature.img} 
+                            alt={feature.title} 
+                            fill 
+                            className="object-cover opacity-60 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700" 
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent"></div>
                     </div>
-                </GSAPReveal>
+                    
+                    {/* Content */}
+                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                        <div className="mb-4 p-3 bg-white/10 backdrop-blur-md w-fit rounded-xl border border-white/20 group-hover:bg-gold/20 group-hover:border-gold/50 transition-colors">
+                            <feature.icon className="w-8 h-8 text-white group-hover:text-gold transition-colors" />
+                        </div>
+                        
+                        <h3 className="text-2xl font-serif font-bold text-white mb-2">{feature.title}</h3>
+                        <p className="text-gray-300 text-sm mb-6 line-clamp-2 md:line-clamp-none opacity-80 group-hover:opacity-100 transition-opacity">
+                            {feature.desc}
+                        </p>
+                        
+                        <div className="flex items-center gap-2 text-gold text-sm font-bold uppercase tracking-wider group/link cursor-pointer w-fit">
+                            Explore <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                        </div>
+                    </div>
+                </div>
              ))}
-        </div>
+         </div>
       </div>
     </section>
   );

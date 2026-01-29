@@ -1,15 +1,15 @@
 "use client";
 
-import { Briefcase, GraduationCap, Building2, TrendingUp } from "lucide-react";
+import { Briefcase, GraduationCap, Building2, TrendingUp, CheckCircle2 } from "lucide-react";
 import GSAPReveal from "./GSAPReveal";
 import Image from "next/image";
 
 export default function Mission() {
-  const features = [
-    { icon: Briefcase, title: "Every Job Seeker", desc: "Opportunity", sub: "Connecting talent to destiny." },
-    { icon: GraduationCap, title: "Every Student", desc: "Guided Path", sub: "From classroom to career." },
-    { icon: Building2, title: "Every Business", desc: "Perfect Talent", sub: "Growth powered by people." },
-    { icon: TrendingUp, title: "Every Professional", desc: "Boundless Growth", sub: "Upskilling for the future." },
+  const realities = [
+    { text: "Every Indian can discover opportunities aligned to skills, location, and growth path." },
+    { text: "Every student receives guided employability from education to employment." },
+    { text: "Every employer accesses verified, AI-matched, job-ready talent." },
+    { text: "Governments gain real-time workforce intelligence to drive policy and GDP growth." },
   ];
 
   return (
@@ -22,47 +22,59 @@ export default function Mission() {
             fill
             className="object-cover opacity-10"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background"></div>
+          <div className="absolute inset-0 bg-linear-to-b from-background via-transparent to-background"></div>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-24">
           <GSAPReveal>
-            <h2 className="text-4xl md:text-6xl font-serif font-bold mb-6 text-gradient-gold">
-              The Mission of a Billion Lives
+            <div className="inline-block mb-6 px-6 py-2 rounded-full border border-gold/30 bg-gold/5 backdrop-blur-md">
+                <span className="text-gold text-sm font-bold tracking-[0.2em] uppercase">Not a Startup</span>
+            </div>
+          </GSAPReveal>
+
+          <GSAPReveal delay={0.1}>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-8 text-white max-w-5xl mx-auto leading-tight">
+              A <span className="text-gradient-gold">National Infrastructure Mission</span>
             </h2>
           </GSAPReveal>
           
           <GSAPReveal delay={0.2}>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light mb-8 leading-relaxed">
-              SarvaLinks is not a startup — it’s a <span className="text-gold font-serif italic">National Promise</span>.
-              <br/>
-              To eliminate unemployment, empower every Indian, and make India’s workforce truly world-class.
-            </p>
+            <div className="max-w-4xl mx-auto space-y-6 text-lg md:text-xl text-gray-300 font-light leading-relaxed">
+                <p>
+                    SarvaLinks is not a company trying to disrupt hiring. 
+                    It is a nation-building digital infrastructure designed to systematically transform India’s employment ecosystem.
+                </p>
+                <p className="border-l-2 border-gold/50 pl-6 italic text-gray-400">
+                    Just as highways enabled commerce and digital payments enabled inclusion, <br/>
+                    <strong className="text-white not-italic">SarvaLinks enables employability, productivity, and economic expansion.</strong>
+                </p>
+            </div>
           </GSAPReveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {realities.map((item, idx) => (
             <GSAPReveal key={idx} delay={idx * 0.1}>
-                <div
-                className="p-10 h-full rounded-xl bg-white/5 border border-white/10 hover:border-gold/50 transition-all duration-300 text-center group hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center relative overflow-hidden"
-                >
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <feature.icon className="w-24 h-24 text-gold transform rotate-12" />
-                </div>
-
-                <div className="w-16 h-16 mb-6 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center border border-white/10 group-hover:border-gold group-hover:scale-110 transition-all duration-300 relative z-10">
-                    <feature.icon className="text-gray-400 group-hover:text-gold w-7 h-7 transition-colors duration-300" />
-                </div>
-                
-                <h3 className="text-lg font-bold mb-2 text-white group-hover:text-gold-light transition-colors z-10">{feature.title}</h3>
-                <p className="text-gold font-bold uppercase text-sm tracking-widest mb-2 z-10">{feature.desc}</p>
-                <p className="text-gray-500 text-xs z-10">{feature.sub}</p>
+                <div className="p-8 h-full rounded-2xl bg-white/5 border border-white/10 hover:border-gold/30 transition-all duration-300 flex items-start gap-4 group hover:bg-[#0f1012]">
+                    <div className="mt-1 flex-shrink-0">
+                        <CheckCircle2 className="w-6 h-6 text-gold" />
+                    </div>
+                    <p className="text-lg text-gray-300 group-hover:text-white transition-colors duration-300 leading-relaxed">
+                        {item.text}
+                    </p>
                 </div>
             </GSAPReveal>
           ))}
         </div>
+
+        <GSAPReveal delay={0.6}>
+            <div className="mt-20 text-center">
+                <p className="text-xl md:text-2xl font-serif text-white tracking-wide">
+                    SarvaLinks is the <span className="text-gradient-gold font-bold">digital nervous system</span> of India’s workforce.
+                </p>
+            </div>
+        </GSAPReveal>
       </div>
     </section>
   );

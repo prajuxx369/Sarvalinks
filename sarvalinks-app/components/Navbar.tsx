@@ -58,8 +58,8 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden xl:flex space-x-8">
-          {navItems.map((item) => (
+        <div className="hidden xl:flex items-center space-x-8">
+          {navItems.filter(item => item.id !== "join-mission").map((item) => (
             <button
               key={item.name}
               onClick={() => scrollToSection(item.id)}
@@ -69,6 +69,13 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gold transition-all duration-300 group-hover:w-full"></span>
             </button>
           ))}
+          
+          <button
+              onClick={() => scrollToSection("join-mission")}
+              className="px-6 py-2 rounded-full bg-gold text-black text-xs font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.7)] hover:scale-105 transition-all duration-300 animate-pulse-slow"
+          >
+              Join Mission
+          </button>
         </div>
 
         {/* Mobile Menu Button */}

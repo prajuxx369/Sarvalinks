@@ -16,6 +16,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         gestureOrientation: 'vertical',
       }}
     >
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       {children as any}
     </ReactLenis>
   );

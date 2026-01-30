@@ -1,12 +1,19 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Landmark, Briefcase, GraduationCap, School, Users, FileText, ArrowRight } from "lucide-react";
+import { Landmark, Briefcase, GraduationCap, School, Users, FileText, LucideIcon } from "lucide-react";
 import GSAPReveal from "./GSAPReveal";
 import Image from "next/image";
 import { MouseEvent } from "react";
 
-function CinematicCard({ item, index }: { item: any; index: number }) {
+interface ExchangeItem {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  img: string;
+}
+
+function CinematicCard({ item, index }: { item: ExchangeItem; index: number }) {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
   

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import GSAPReveal from "./GSAPReveal";
-import { CheckCircle2, TrendingUp } from "lucide-react";
+
 
 export default function Impact() {
   const milestones = [

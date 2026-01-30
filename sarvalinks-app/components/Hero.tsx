@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Play } from "lucide-react";
 import GSAPReveal from "./GSAPReveal";
 
-const wordAnimation: any = {
+const wordAnimation: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -16,7 +16,7 @@ const wordAnimation: any = {
   }
 };
 
-const staggerContainer: any = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,

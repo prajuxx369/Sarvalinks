@@ -1,6 +1,6 @@
 "use client";
 
-import { Briefcase, GraduationCap, Building2, TrendingUp, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import GSAPReveal from "./GSAPReveal";
 import Image from "next/image";
 

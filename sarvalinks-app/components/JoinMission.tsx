@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { DollarSign, Handshake, Rocket } from "lucide-react";
 import GSAPReveal from "./GSAPReveal";
 
